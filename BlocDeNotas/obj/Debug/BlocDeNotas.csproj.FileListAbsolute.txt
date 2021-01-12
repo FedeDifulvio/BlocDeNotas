@@ -13,3 +13,9 @@ E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csproj.Generate
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csproj.CoreCompileInputs.cache
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.exe
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.pdb
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignColors.dll
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignColors.pdb
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csproj.CopyComplete

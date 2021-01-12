@@ -7,16 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Menu IsMainMenu="True">
-            <MenuItem Header="_File" />
-            <MenuItem Header="_Edit" />
-            <MenuItem Header="_View" />
-            <MenuItem Header="_Window" />
-            <MenuItem Header="_Help" />
+        <Menu HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="792">
+            <MenuItem Header="Archivo" Height="33" Width="58">
+                <MenuItem Header="Nuevo" HorizontalAlignment="Left" Height="28" Width="170" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="nuevo.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="abrir" Header="Abrir..."  HorizontalAlignment="Left" Height="28" Width="170" Click="abrir_Click">
+                    <MenuItem.Icon>
+                        <Image Source="abrir.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="guardar" Header="Guardar"  HorizontalAlignment="Left" Height="28" Width="170" Click="guardar_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Guardar.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="guardarComo" Header="Guardar como..."  HorizontalAlignment="Left" Height="29" Width="200" Click="guardarComo_Click">
+                    <MenuItem.Icon>
+                        <Image Source="guardar como.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
         </Menu>
-        <MenuItem Header="File">
-            
-        </MenuItem>
+        <TextBox Name="TextBox" HorizontalAlignment="Left" Height="386" Margin="0,33,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="792"/>
+
+
 
 
     </Grid>

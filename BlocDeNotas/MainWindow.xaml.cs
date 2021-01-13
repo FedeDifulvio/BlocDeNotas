@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32; 
-
 namespace BlocDeNotas
 {
     /// <summary>
@@ -22,7 +21,9 @@ namespace BlocDeNotas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string archivoAbierto = null; 
+        string archivoAbierto = null;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,12 +31,14 @@ namespace BlocDeNotas
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Clear();
+            richBox.Document.Blocks.Clear();
             archivoAbierto = null;
         }
 
         private void abrir_Click(object sender, RoutedEventArgs e)
         {
+            richBox.Document.Blocks.Clear();  //Limpio el richBox parav mostrar solo el archivo que se abre. 
+
             OpenFileDialog open = new OpenFileDialog();
             //Representa un cuadro de diálogo común que permite a un usuario especificar un nombre de archivo para abrir uno o más archivos.
             try
@@ -46,20 +49,21 @@ namespace BlocDeNotas
                 open.OpenFile();
                 archivoAbierto = open.FileName;
                 StreamReader lectura = File.OpenText(open.FileName);
-                TextBox.Text = lectura.ReadToEnd();
+                richBox.Document.Blocks.Add(new Paragraph(new Run(lectura.ReadToEnd())));
                 lectura.Close();
                 open.Reset();
 
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error al abrir el archivo"  + err.Message); 
+                MessageBox.Show("Error al abrir el archivo" + err.Message);
             }
-            
-            
-        }
 
-        private void guardar_Click(object sender, RoutedEventArgs e)
+
+        } 
+        
+
+      private void guardar_Click(object sender, RoutedEventArgs e)
         {   
             try
             {
@@ -70,7 +74,7 @@ namespace BlocDeNotas
                 else
                 {
                     TextWriter overWriter = new StreamWriter(archivoAbierto);
-                    overWriter.Write(TextBox.Text);
+                    overWriter.Write(StringFromRichTextBox(richBox)); 
                     overWriter.Flush();
                     overWriter.Close(); 
                 }
@@ -99,9 +103,10 @@ namespace BlocDeNotas
                 saveAs.ShowDialog();
                 StreamWriter writer = File.CreateText(saveAs.FileName);
                 archivoAbierto = saveAs.FileName;
-                writer.Write(TextBox.Text);
+                writer.Write(StringFromRichTextBox(richBox)); 
                 writer.Flush();
                 writer.Close();
+                saveAs.Reset();
                
 
             }
@@ -109,6 +114,24 @@ namespace BlocDeNotas
             {
                 MessageBox.Show("Error al guardar" + e.Message);
             }
+        } 
+
+
+
+
+        string StringFromRichTextBox(RichTextBox rtb)
+        {
+            TextRange textRange = new TextRange(
+                // TextPointer to the start of content in the RichTextBox.
+                rtb.Document.ContentStart,
+                // TextPointer to the end of content in the RichTextBox.
+                rtb.Document.ContentEnd
+            );
+
+            // The Text property on a TextRange object returns a string
+            // representing the plain text content of the TextRange.
+            return textRange.Text;
         }
     }
-}
+} 
+      

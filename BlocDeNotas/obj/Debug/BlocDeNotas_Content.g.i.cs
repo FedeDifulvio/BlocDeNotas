@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("guardar%20como.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("blocicono.png")]
 
 

@@ -36,7 +36,7 @@
             </MenuItem>
 
         </Menu>
-        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsTab="True" Block.LineHeight="4">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>

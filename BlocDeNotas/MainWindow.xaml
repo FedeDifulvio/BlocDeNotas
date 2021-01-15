@@ -8,35 +8,73 @@
         Icon="blocIcono.png"
         mc:Ignorable="d"
         Title="Bloc de Notas de Fede " Height="510.197" Width="847" Topmost="True">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="MenuItem_Click"></CommandBinding>
+
+    </Window.CommandBindings>
 
     <Grid Margin="0,2,2,0">
 
         <Menu  Height="33" VerticalAlignment="Top">
             <MenuItem Header="Archivo" Height="33" Width="58">
-                <MenuItem Header="Nuevo" HorizontalAlignment="Left" Height="28" Width="170" Click="MenuItem_Click">
+                <MenuItem Header="Nuevo" HorizontalAlignment="Left" Height="28" Width="220" Click="MenuItem_Click" InputGestureText="Ctrl + N" Command="ApplicationCommands.New">
                     <MenuItem.Icon>
                         <Image Source="nuevo.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="abrir" Header="Abrir..."  HorizontalAlignment="Left" Height="28" Width="170" Click="abrir_Click">
+                <MenuItem x:Name="abrir" Header="Abrir..."  HorizontalAlignment="Left" Height="28" Width="220" Click="abrir_Click" >
                     <MenuItem.Icon>
                         <Image Source="abrir.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="guardar" Header="Guardar"  HorizontalAlignment="Left" Height="28" Width="170" Click="guardar_Click">
+                <MenuItem x:Name="guardar" Header="Guardar"  HorizontalAlignment="Left" Height="28" Width="220" Click="guardar_Click"> 
                     <MenuItem.Icon>
                         <Image Source="Guardar.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="guardarComo" Header="Guardar como..."  HorizontalAlignment="Left" Height="29" Width="200" Click="guardarComo_Click">
+                <MenuItem x:Name="guardarComo" Header="Guardar como..."  HorizontalAlignment="Left" Height="29" Width="220" Click="guardarComo_Click">
                     <MenuItem.Icon>
                         <Image Source="guardar como.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="Edición" Height="33" Width="58">
+                <MenuItem Header="Copiar"  Height="28" Command="ApplicationCommands.Copy">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCopy" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Pegar"  Height="28" Command="ApplicationCommands.Paste">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentSave" /> 
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Cortar"  Height="28" Command="ApplicationCommands.Cut">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCut" /> 
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Volver"  Height="28" Command="ApplicationCommands.Undo">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ArrowBack" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator> </Separator> 
+                <MenuItem Header="Seleccionar todo"  Height="28" Command="ApplicationCommands.SelectAll">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="SelectAll" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="key" Header="Hora y fecha"   Height="28" InputGestureText="F3"  Click="key__Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="DateRange" /> 
+                    </MenuItem.Icon>
+                </MenuItem>
+
+            </MenuItem>
 
         </Menu>
-        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsTab="True" Block.LineHeight="4">
+        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsTab="True" Block.LineHeight="4"  KeyUp="MostrarFecha_KeyDown">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>

@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32; 
+using Microsoft.Win32;
+
 namespace BlocDeNotas
 {
     /// <summary>
@@ -21,12 +22,12 @@ namespace BlocDeNotas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string archivoAbierto = null;
+        string archivoAbierto = null;  
 
 
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -119,7 +120,7 @@ namespace BlocDeNotas
 
 
 
-        string StringFromRichTextBox(RichTextBox rtb)
+        private string StringFromRichTextBox(RichTextBox rtb)
         {
             TextRange textRange = new TextRange(
                 // TextPointer to the start of content in the RichTextBox.
@@ -131,6 +132,27 @@ namespace BlocDeNotas
             // The Text property on a TextRange object returns a string
             // representing the plain text content of the TextRange.
             return textRange.Text;
+        } 
+
+        private void obtenerFechaYHora()
+        {
+            DateTime Fecha = DateTime.Now;
+            richBox.Document.Blocks.Add(new Paragraph(new Run(Fecha.ToString()))); 
+        }
+
+        private void MostrarFecha_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.Key == Key.F3)
+            {
+                obtenerFechaYHora();
+            }
+
+        }
+
+        private void key__Click(object sender, RoutedEventArgs e)
+        {
+            obtenerFechaYHora();
         }
     }
 } 

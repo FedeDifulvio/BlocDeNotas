@@ -59,17 +59,42 @@
                         <materialDesign:PackIcon Kind="ArrowBack" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <Separator> </Separator> 
+                <Separator> </Separator>
                 <MenuItem Header="Seleccionar todo"  Height="28" Command="ApplicationCommands.SelectAll">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="SelectAll" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="key" Header="Hora y fecha"   Height="28" InputGestureText="F3"  Click="key__Click">
+
+            </MenuItem>
+            <MenuItem Header="Insertar"  Height="33" Width="58">
+                <MenuItem Header="Ítem -Punto Negro-"   Height="28" Click="MenuItem_Click_1">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="DateRange" /> 
+                        <materialDesign:PackIcon Kind="CheckboxBlankCircle" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="Ítem -Punto Blanco-"   Height="28" Click="MenuItem_Click_2">
+                    <MenuItem.Icon>
+                        <Image Source="circulo blanco.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Ítem -Estrella-"   Height="28" Click="MenuItem_Click_3">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Star" />
+                    </MenuItem.Icon> 
+                </MenuItem>
+                <MenuItem Header="Ítem -Chequeado-"   Height="28" Click="MenuItem_Click_4">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Check" />
+                    </MenuItem.Icon>
+                </MenuItem> 
+                <Separator></Separator>
+                <MenuItem x:Name="key" Header="Fecha y Hora"   Height="28" InputGestureText="F3"  Click="key__Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="DateRange" />
+                    </MenuItem.Icon>
+                </MenuItem> 
+                
 
             </MenuItem>
 

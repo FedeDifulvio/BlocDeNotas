@@ -1,3 +1,7 @@
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\MainWindow.g.cs
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\App.g.cs
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas_MarkupCompile.cache
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas_MarkupCompile.lref
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\BlocDeNotas.exe.config
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\BlocDeNotas.exe
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\BlocDeNotas.pdb
@@ -6,11 +10,6 @@ E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.dl
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignColors.pdb
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.pdb
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\bin\Debug\MaterialDesignThemes.Wpf.xml
-E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csprojAssemblyReference.cache
-E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\MainWindow.g.cs
-E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\App.g.cs
-E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas_MarkupCompile.cache
-E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas_MarkupCompile.lref
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\MainWindow.baml
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.g.resources
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.Properties.Resources.resources
@@ -19,3 +18,4 @@ E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csproj.CoreComp
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csproj.CopyComplete
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.exe
 E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.pdb
+E:\PROGRAMACION\C#\BlocDeNotas\BlocDeNotas\obj\Debug\BlocDeNotas.csprojAssemblyReference.cache

@@ -22,8 +22,9 @@ namespace BlocDeNotas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string archivoAbierto = null;  
+        string archivoAbierto = null;
 
+      
 
         public MainWindow()
         {
@@ -134,7 +135,7 @@ namespace BlocDeNotas
             return textRange.Text;
         } 
 
-        private void obtenerFechaYHora()
+        public void obtenerFechaYHora()
         {
             DateTime Fecha = DateTime.Now;
             richBox.Document.Blocks.Add(new Paragraph(new Run(Fecha.ToString()))); 
@@ -154,6 +155,27 @@ namespace BlocDeNotas
         {
             obtenerFechaYHora();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            richBox.Document.Blocks.Add(new Paragraph(new Run("•"))); 
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            richBox.Document.Blocks.Add(new Paragraph(new Run("○")));  
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            richBox.Document.Blocks.Add(new Paragraph(new Run("✩"))); 
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            richBox.Document.Blocks.Add(new Paragraph(new Run("✓")));
+        } 
+
     }
 } 
       

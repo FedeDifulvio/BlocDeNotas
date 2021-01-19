@@ -93,9 +93,49 @@
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="DateRange" />
                     </MenuItem.Icon>
-                </MenuItem> 
-                
-
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Fuente"  Height="33" Width="58">
+                <MenuItem Name="ComicSans" Header="Comic Sans" Height="28" Click="ComicSans_Click" FontFamily="Comic Sans MS"   >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" /> 
+                    </MenuItem.Icon>  
+                    </MenuItem>
+                <MenuItem Name="Arial" Header="Arial" Height="28" Click="Arial_Click" FontFamily="Arial" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="TimesNewRoman" Header="Times New Roman" Height="28" Click="TimesNewRoman_Click" FontFamily="Times New Roman" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="Calibri" Header="Calibri" Height="28" Click="Calibri_Click" FontFamily="Calibri">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="CalibriLight" Header="Calibri Light" Height="28" Click="CalibriLight_Click" FontFamily="Calibri Light">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="Bahnschrift" Header="Bahnschrift Light" Height="28" Click="Bahnschrift_Click" FontFamily="Bahnschrift Light">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="Consolas" Header="Consolas" Height="28" Click="Consolas_Click" FontFamily="Consolas ">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="LucidaConsole" Header="Lucida Console" Height="28" Click="LucidaConsole_Click" FontFamily="Lucida Console" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FormatFont" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
 
         </Menu>
@@ -106,9 +146,5 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-
-
-
-
     </Grid>
 </Window>

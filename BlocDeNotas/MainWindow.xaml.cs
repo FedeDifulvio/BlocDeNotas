@@ -15,6 +15,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 
+
+
+
+
 namespace BlocDeNotas
 {
     /// <summary>
@@ -28,7 +32,13 @@ namespace BlocDeNotas
 
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+
+            /* Seteo de font configurada */
+            TextReader lecturaFont = new StreamReader("Font.txt"); 
+            richBox.FontFamily = new FontFamily(lecturaFont.ReadToEnd()); 
+            lecturaFont.Close();       
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -65,7 +75,7 @@ namespace BlocDeNotas
         } 
         
 
-      private void guardar_Click(object sender, RoutedEventArgs e)
+        private void guardar_Click(object sender, RoutedEventArgs e)
         {   
             try
             {
@@ -174,8 +184,60 @@ namespace BlocDeNotas
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
             richBox.Document.Blocks.Add(new Paragraph(new Run("✓")));
+        }
+
+        private void seleccionarFont(string font)
+        {
+            richBox.FontFamily = new FontFamily(font); //Se refresca el texto
+
+            StreamWriter escribirFont = File.CreateText("Font.txt");  //Se guarda la configuracion 
+            escribirFont.Write(font);
+            escribirFont.Flush();
+            escribirFont.Close();
+        }
+
+
+        private void ComicSans_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Comic Sans MS"); 
         } 
 
+        
+        private void Arial_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Arial"); 
+
+        }
+
+        private void TimesNewRoman_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Times New Roman");
+        }
+
+        private void Calibri_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Calibri"); 
+        }
+
+        private void CalibriLight_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Calibri Light"); 
+        }
+
+        private void Bahnschrift_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Bahnschrift Light");
+        }
+
+        private void Consolas_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Consolas");
+        }
+
+        private void LucidaConsole_Click(object sender, RoutedEventArgs e)
+        {
+            seleccionarFont("Lucida Console");
+        }
     }
-} 
-      
+}
+  

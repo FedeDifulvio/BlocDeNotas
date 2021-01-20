@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="BlocDeNotas.MainWindow"
         Icon="blocIcono.png"
         mc:Ignorable="d"
-        Title="Bloc de Notas de Fede " Height="510.197" Width="847" Topmost="True">
+        Title= "{Binding Path=NameArchivo, Mode=TwoWay}" Height="510.197" Width="847" Topmost="True"> 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="MenuItem_Click"></CommandBinding>
 

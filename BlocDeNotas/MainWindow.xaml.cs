@@ -27,24 +27,36 @@ namespace BlocDeNotas
     public partial class MainWindow : Window
     {
         string archivoAbierto = null;
+        public NombreArchivo nameFile;
 
-      
 
         public MainWindow()
         {
+
             InitializeComponent();
+
+            cabeceraDelArchivo("Sin Título"); 
+            
 
             /* Seteo de font configurada */
             TextReader lecturaFont = new StreamReader("Font.txt"); 
             richBox.FontFamily = new FontFamily(lecturaFont.ReadToEnd()); 
-            lecturaFont.Close();       
+            lecturaFont.Close();
 
+        } 
+
+        private void cabeceraDelArchivo(string name) 
+        {
+            /* Seteo de Binding para titulo del archivo */
+            nameFile = new NombreArchivo { NameArchivo = name + " : " + "Bloc De Notas De Fede" };
+            this.DataContext = nameFile;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             richBox.Document.Blocks.Clear();
             archivoAbierto = null;
+            cabeceraDelArchivo("Sin Título");  
         }
 
         private void abrir_Click(object sender, RoutedEventArgs e)
@@ -60,10 +72,12 @@ namespace BlocDeNotas
                 open.ShowDialog();  //Muestra la ventana
                 open.OpenFile();
                 archivoAbierto = open.FileName;
-                StreamReader lectura = File.OpenText(open.FileName);
+                StreamReader lectura = File.OpenText(open.FileName); 
                 richBox.Document.Blocks.Add(new Paragraph(new Run(lectura.ReadToEnd())));
-                lectura.Close();
+                cabeceraDelArchivo(open.FileName); 
+                lectura.Close(); 
                 open.Reset();
+   
 
             }
             catch (Exception err)
@@ -86,9 +100,11 @@ namespace BlocDeNotas
                 else
                 {
                     TextWriter overWriter = new StreamWriter(archivoAbierto);
-                    overWriter.Write(StringFromRichTextBox(richBox)); 
+                    overWriter.Write(StringFromRichTextBox(richBox));
                     overWriter.Flush();
-                    overWriter.Close(); 
+                    overWriter.Close();
+                    cabeceraDelArchivo(archivoAbierto); 
+
                 }
             }
             catch (Exception error)
@@ -115,6 +131,7 @@ namespace BlocDeNotas
                 saveAs.ShowDialog();
                 StreamWriter writer = File.CreateText(saveAs.FileName);
                 archivoAbierto = saveAs.FileName;
+                cabeceraDelArchivo(saveAs.FileName); 
                 writer.Write(StringFromRichTextBox(richBox)); 
                 writer.Flush();
                 writer.Close();

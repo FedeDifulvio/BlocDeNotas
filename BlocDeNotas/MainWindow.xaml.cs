@@ -26,27 +26,31 @@ namespace BlocDeNotas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string archivoAbierto = null;
-        public NombreArchivo nameFile;
+        private string archivoAbierto;     //Ruta archivo
+        private string nombreArechivoAbierto; //Nombre.txt 
+       private bool archivoGuardado; 
 
+        public NombreArchivo nameFile;
 
         public MainWindow()
         {
 
             InitializeComponent();
 
-            cabeceraDelArchivo("Sin Título"); 
-            
+            cabeceraDelArchivo("Sin Título");
 
+            archivoGuardado = false;
+            
             /* Seteo de font configurada */
             TextReader lecturaFont = new StreamReader("Font.txt"); 
             richBox.FontFamily = new FontFamily(lecturaFont.ReadToEnd()); 
             lecturaFont.Close();
-
+             
         } 
 
         private void cabeceraDelArchivo(string name) 
-        {
+        {   
+
             /* Seteo de Binding para titulo del archivo */
             nameFile = new NombreArchivo { NameArchivo = name + " : " + "Bloc De Notas De Fede" };
             this.DataContext = nameFile;
@@ -56,6 +60,7 @@ namespace BlocDeNotas
         { 
             richBox.Document.Blocks.Clear();
             archivoAbierto = null;
+            nombreArechivoAbierto = null; 
             cabeceraDelArchivo("Sin Título");  
         }
 
@@ -71,10 +76,13 @@ namespace BlocDeNotas
                 open.Title = "Abrir archivo";
                 open.ShowDialog();  //Muestra la ventana
                 open.OpenFile();
+
                 archivoAbierto = open.FileName;
+                nombreArechivoAbierto = open.SafeFileName;  
+
                 StreamReader lectura = File.OpenText(open.FileName); 
                 richBox.Document.Blocks.Add(new Paragraph(new Run(lectura.ReadToEnd())));
-                cabeceraDelArchivo(open.FileName); 
+                cabeceraDelArchivo(open.SafeFileName);  
                 lectura.Close(); 
                 open.Reset();
    
@@ -82,7 +90,7 @@ namespace BlocDeNotas
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error al abrir el archivo" + err.Message);
+                MessageBox.Show("Error al abrir el archivo " + err.Message);
             }
 
 
@@ -103,13 +111,13 @@ namespace BlocDeNotas
                     overWriter.Write(StringFromRichTextBox(richBox));
                     overWriter.Flush();
                     overWriter.Close();
-                    cabeceraDelArchivo(archivoAbierto); 
+                    cabeceraDelArchivo(nombreArechivoAbierto); 
 
                 }
             }
             catch (Exception error)
             {
-                MessageBox.Show("Error al guardar"  + error.Message); 
+                MessageBox.Show("Error al guardar "  + error.Message); 
             }
             
 
@@ -129,9 +137,9 @@ namespace BlocDeNotas
                 saveAs.Filter = "Archivo de texto (.txt)|*.txt";
                 saveAs.Title = "Guardar como...";
                 saveAs.ShowDialog();
-                StreamWriter writer = File.CreateText(saveAs.FileName);
+                StreamWriter writer = File.CreateText(saveAs.FileName); 
                 archivoAbierto = saveAs.FileName;
-                cabeceraDelArchivo(saveAs.FileName); 
+                cabeceraDelArchivo(saveAs.SafeFileName);  
                 writer.Write(StringFromRichTextBox(richBox)); 
                 writer.Flush();
                 writer.Close();
@@ -141,7 +149,7 @@ namespace BlocDeNotas
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error al guardar" + e.Message);
+                MessageBox.Show("Error al guardar " + e.Message);
             }
         } 
 

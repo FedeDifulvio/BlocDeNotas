@@ -7,6 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="BlocDeNotas.MainWindow"
         Icon="blocIcono.png"
         mc:Ignorable="d"
+    Closing="Window_Closing" 
         Title= "{Binding Path=NameArchivo, Mode=TwoWay}" Height="510.197" Width="847" Topmost="True"> 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="MenuItem_Click"></CommandBinding>
@@ -139,7 +140,7 @@
             </MenuItem>
 
         </Menu>
-        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsTab="True" Block.LineHeight="4"  KeyUp="MostrarFecha_KeyDown">
+        <RichTextBox Name="richBox" Margin="0,33,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsTab="True" Block.LineHeight="4"  KeyUp="MostrarFecha_KeyDown" TextChanged="richBox_TextChanged">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>

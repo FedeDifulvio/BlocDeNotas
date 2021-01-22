@@ -27,8 +27,8 @@ namespace BlocDeNotas
     public partial class MainWindow : Window
     {
         private string archivoAbierto;     //Ruta archivo
-        private string nombreArechivoAbierto; //Nombre.txt 
-       private bool archivoGuardado; 
+        private string nombreArchivoAbierto; //Nombre.txt 
+        private bool archivoGuardado; 
 
         public NombreArchivo nameFile;
 
@@ -37,31 +37,63 @@ namespace BlocDeNotas
 
             InitializeComponent();
 
-            cabeceraDelArchivo("Sin Título");
+            archivoGuardado = true; /*texto vacio y sin nombre. Se pregunta por guardar solo cuando tiene contenido. Por eso se inicializa en true*/
+            nombreArchivoAbierto = "Sin Título"; 
+            cabeceraDelArchivo(nombreArchivoAbierto); 
 
-            archivoGuardado = false;
-            
             /* Seteo de font configurada */
             TextReader lecturaFont = new StreamReader("Font.txt"); 
             richBox.FontFamily = new FontFamily(lecturaFont.ReadToEnd()); 
             lecturaFont.Close();
              
-        } 
+        }  
+
 
         private void cabeceraDelArchivo(string name) 
-        {   
-
+        {
             /* Seteo de Binding para titulo del archivo */
-            nameFile = new NombreArchivo { NameArchivo = name + " : " + "Bloc De Notas De Fede" };
+            if (archivoGuardado == true)
+            {
+                nameFile = new NombreArchivo { NameArchivo = name + " : " + "Bloc De Notas De Fede" };
+            }
+            else
+            {
+                nameFile = new NombreArchivo { NameArchivo = "* " +  name + " : " + "Bloc De Notas De Fede" }; 
+            }
+            
             this.DataContext = nameFile;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        { 
+        //Evento al presionar NUEVO
+        private void MenuItem_Click(object sender, RoutedEventArgs e) 
+        {
+            if (!archivoGuardado)
+            {
+               var respuesta = MessageBox.Show("Desea guardar los cambios?", "Guardar Cambios",
+                    MessageBoxButton.YesNo);
+
+                if (respuesta == MessageBoxResult.Yes)
+                {
+                    Save();
+                }
+                else
+                {
+                    nuevoArchivo(); 
+                }
+            } 
+            else
+            {
+                nuevoArchivo();
+            }     
+        } 
+
+        private void nuevoArchivo()
+        {
             richBox.Document.Blocks.Clear();
             archivoAbierto = null;
-            nombreArechivoAbierto = null; 
-            cabeceraDelArchivo("Sin Título");  
+            nombreArchivoAbierto = "Sin Título"; 
+            archivoGuardado = true; 
+            cabeceraDelArchivo(nombreArchivoAbierto); 
         }
 
         private void abrir_Click(object sender, RoutedEventArgs e)
@@ -78,14 +110,14 @@ namespace BlocDeNotas
                 open.OpenFile();
 
                 archivoAbierto = open.FileName;
-                nombreArechivoAbierto = open.SafeFileName;  
+                nombreArchivoAbierto = open.SafeFileName;  
 
                 StreamReader lectura = File.OpenText(open.FileName); 
                 richBox.Document.Blocks.Add(new Paragraph(new Run(lectura.ReadToEnd())));
+                archivoGuardado = true;
                 cabeceraDelArchivo(open.SafeFileName);  
                 lectura.Close(); 
                 open.Reset();
-   
 
             }
             catch (Exception err)
@@ -98,10 +130,20 @@ namespace BlocDeNotas
         
 
         private void guardar_Click(object sender, RoutedEventArgs e)
-        {   
+        {
+            Save();
+        }
+
+        private void guardarComo_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAs();  
+        }  
+
+        private void Save()
+        {
             try
             {
-                if(!File.Exists(archivoAbierto))
+                if (!File.Exists(archivoAbierto))
                 {
                     SaveAs();
                 }
@@ -111,22 +153,15 @@ namespace BlocDeNotas
                     overWriter.Write(StringFromRichTextBox(richBox));
                     overWriter.Flush();
                     overWriter.Close();
-                    cabeceraDelArchivo(nombreArechivoAbierto); 
-
+                    archivoGuardado = true;
+                    cabeceraDelArchivo(nombreArchivoAbierto);
                 }
             }
             catch (Exception error)
             {
-                MessageBox.Show("Error al guardar "  + error.Message); 
+                MessageBox.Show("Error al guardar " + error.Message);
             }
-            
-
         }
-
-        private void guardarComo_Click(object sender, RoutedEventArgs e)
-        {
-            SaveAs();  
-        } 
 
         private void SaveAs()
         {
@@ -139,7 +174,9 @@ namespace BlocDeNotas
                 saveAs.ShowDialog();
                 StreamWriter writer = File.CreateText(saveAs.FileName); 
                 archivoAbierto = saveAs.FileName;
-                cabeceraDelArchivo(saveAs.SafeFileName);  
+                archivoGuardado = true;
+                nombreArchivoAbierto = saveAs.SafeFileName;
+                cabeceraDelArchivo(nombreArchivoAbierto);  
                 writer.Write(StringFromRichTextBox(richBox)); 
                 writer.Flush();
                 writer.Close();
@@ -186,6 +223,7 @@ namespace BlocDeNotas
 
         }
 
+        //Evento al apretar F3
         private void key__Click(object sender, RoutedEventArgs e)
         {
             obtenerFechaYHora();
@@ -209,7 +247,9 @@ namespace BlocDeNotas
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
             richBox.Document.Blocks.Add(new Paragraph(new Run("✓")));
-        }
+        } 
+
+
 
         private void seleccionarFont(string font)
         {
@@ -263,6 +303,31 @@ namespace BlocDeNotas
         {
             seleccionarFont("Lucida Console");
         }
+
+        private void richBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            archivoGuardado = false;
+            cabeceraDelArchivo(nombreArchivoAbierto); 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!archivoGuardado )
+            {
+               var respuesta= MessageBox.Show("¿Desea guardar los cambios?", "Salir",
+                    MessageBoxButton.YesNoCancel
+                    );  
+                if(respuesta == MessageBoxResult.Yes)
+                {
+                    Save(); 
+                } 
+                else if(respuesta == MessageBoxResult.Cancel)
+                {
+                    e.Cancel = true;  
+                }
+            }     
+            
+        } 
     }
 }
   

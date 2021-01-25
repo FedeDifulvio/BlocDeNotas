@@ -40,12 +40,7 @@ namespace BlocDeNotas
             archivoGuardado = true; /*texto vacio y sin nombre. Se pregunta por guardar solo cuando tiene contenido. Por eso se inicializa en true*/
             nombreArchivoAbierto = "Sin Título"; 
             cabeceraDelArchivo(nombreArchivoAbierto); 
-
-            /* Seteo de font configurada */
-            TextReader lecturaFont = new StreamReader("Font.txt"); 
-            richBox.FontFamily = new FontFamily(lecturaFont.ReadToEnd()); 
-            lecturaFont.Close();
-             
+  
         }  
 
 
@@ -253,19 +248,14 @@ namespace BlocDeNotas
 
         private void seleccionarFont(string font)
         {
-            richBox.FontFamily = new FontFamily(font); //Se refresca el texto
-
-            StreamWriter escribirFont = File.CreateText("Font.txt");  //Se guarda la configuracion 
-            escribirFont.Write(font);
-            escribirFont.Flush();
-            escribirFont.Close();
+            richBox.FontFamily = new FontFamily(font);  
         }
 
 
         private void ComicSans_Click(object sender, RoutedEventArgs e)
         {
-            seleccionarFont("Comic Sans MS"); 
-        } 
+            seleccionarFont("Comic Sans MS");  
+        }  
 
         
         private void Arial_Click(object sender, RoutedEventArgs e)
@@ -303,7 +293,7 @@ namespace BlocDeNotas
         {
             seleccionarFont("Lucida Console");
         }
-
+      
         private void richBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             archivoGuardado = false;
